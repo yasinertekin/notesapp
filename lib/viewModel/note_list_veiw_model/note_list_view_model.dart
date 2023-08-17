@@ -15,6 +15,8 @@ abstract class _NoteStore with Store {
   _NoteStore() {
     initializeDatabase();
   }
+  @observable
+  String searchTerm = ''; // Arama terimini saklayan değişken
 
   @observable
   ObservableList<NoteModel> noteList = ObservableList<NoteModel>();
@@ -43,6 +45,15 @@ abstract class _NoteStore with Store {
     final result = await noteDatabaseProvider.insert(noteModel);
 
     await getNoteList();
+  }
+
+  @computed
+  List<NoteModel> get filteredNotes {
+    if (searchTerm.isEmpty) {
+      return noteList.toList(); // Arama terimi boşsa, tüm notları döndür
+    } else {
+      return noteList.where((note) => note.title!.toLowerCase().contains(searchTerm.toLowerCase())).toList();
+    }
   }
 
   @action

@@ -9,7 +9,32 @@ part of 'note_list_view_model.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$NoteStore on _NoteStore, Store {
-  late final _$noteListAtom = Atom(name: '_NoteStore.noteList', context: context);
+  Computed<List<NoteModel>>? _$filteredNotesComputed;
+
+  @override
+  List<NoteModel> get filteredNotes => (_$filteredNotesComputed ??=
+          Computed<List<NoteModel>>(() => super.filteredNotes,
+              name: '_NoteStore.filteredNotes'))
+      .value;
+
+  late final _$searchTermAtom =
+      Atom(name: '_NoteStore.searchTerm', context: context);
+
+  @override
+  String get searchTerm {
+    _$searchTermAtom.reportRead();
+    return super.searchTerm;
+  }
+
+  @override
+  set searchTerm(String value) {
+    _$searchTermAtom.reportWrite(value, super.searchTerm, () {
+      super.searchTerm = value;
+    });
+  }
+
+  late final _$noteListAtom =
+      Atom(name: '_NoteStore.noteList', context: context);
 
   @override
   ObservableList<NoteModel> get noteList {
@@ -24,7 +49,8 @@ mixin _$NoteStore on _NoteStore, Store {
     });
   }
 
-  late final _$noteModelAtom = Atom(name: '_NoteStore.noteModel', context: context);
+  late final _$noteModelAtom =
+      Atom(name: '_NoteStore.noteModel', context: context);
 
   @override
   NoteModel get noteModel {
@@ -39,35 +65,41 @@ mixin _$NoteStore on _NoteStore, Store {
     });
   }
 
-  late final _$initializeDatabaseAsyncAction = AsyncAction('_NoteStore.initializeDatabase', context: context);
+  late final _$initializeDatabaseAsyncAction =
+      AsyncAction('_NoteStore.initializeDatabase', context: context);
 
   @override
   Future<void> initializeDatabase() {
-    return _$initializeDatabaseAsyncAction.run(() => super.initializeDatabase());
+    return _$initializeDatabaseAsyncAction
+        .run(() => super.initializeDatabase());
   }
 
-  late final _$getNoteListAsyncAction = AsyncAction('_NoteStore.getNoteList', context: context);
+  late final _$getNoteListAsyncAction =
+      AsyncAction('_NoteStore.getNoteList', context: context);
 
   @override
   Future<void> getNoteList() {
     return _$getNoteListAsyncAction.run(() => super.getNoteList());
   }
 
-  late final _$saveModelAsyncAction = AsyncAction('_NoteStore.saveModel', context: context);
+  late final _$saveModelAsyncAction =
+      AsyncAction('_NoteStore.saveModel', context: context);
 
   @override
   Future<void> saveModel() {
     return _$saveModelAsyncAction.run(() => super.saveModel());
   }
 
-  late final _$deleteModelAsyncAction = AsyncAction('_NoteStore.deleteModel', context: context);
+  late final _$deleteModelAsyncAction =
+      AsyncAction('_NoteStore.deleteModel', context: context);
 
   @override
   Future<void> deleteModel(int index) {
     return _$deleteModelAsyncAction.run(() => super.deleteModel(index));
   }
 
-  late final _$updateModelAsyncAction = AsyncAction('_NoteStore.updateModel', context: context);
+  late final _$updateModelAsyncAction =
+      AsyncAction('_NoteStore.updateModel', context: context);
 
   @override
   Future<void> updateModel(int id) {
@@ -77,8 +109,10 @@ mixin _$NoteStore on _NoteStore, Store {
   @override
   String toString() {
     return '''
+searchTerm: ${searchTerm},
 noteList: ${noteList},
-noteModel: ${noteModel}
+noteModel: ${noteModel},
+filteredNotes: ${filteredNotes}
     ''';
   }
 }
