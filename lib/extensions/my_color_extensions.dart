@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:notesapp/enum/my_color_enum.dart';
 
@@ -33,5 +35,20 @@ extension MyColorExtension on MyColor {
       case MyColor.hydrargyrum:
         return const Color.fromRGBO(154, 154, 154, 1);
     }
+  }
+
+  static MyColor getRandom() {
+    final List<MyColor> availableColors = MyColor.values
+        .where((color) =>
+            color != MyColor.blackLiquorice &&
+            color != MyColor.hydrargyrum &&
+            color != MyColor.white &&
+            color != MyColor.nero &&
+            color != MyColor.americanSilver &&
+            color != MyColor.kettleman)
+        .toList();
+
+    final Random random = Random();
+    return availableColors[random.nextInt(availableColors.length)];
   }
 }
