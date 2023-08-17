@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notesapp/View/home_screen.dart';
 import 'package:notesapp/enum/my_color_enum.dart';
 import 'package:notesapp/extensions/my_color_extensions.dart';
+import 'package:notesapp/view/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
