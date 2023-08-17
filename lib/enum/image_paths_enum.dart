@@ -1,0 +1,1 @@
+enum ImagePaths { homescreenphoto, searchscreenimage }
