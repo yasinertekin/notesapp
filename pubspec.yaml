@@ -37,15 +37,14 @@ dependencies:
   #Database
   sqflite: ^2.3.0
   #Kartal
-  kartal: ^3.2.0
+  kartal: ^3.3.0
 
   #State Management
-  provider: ^6.0.5
   mobx: ^2.0.4 # Bu sürüm numarası güncel olabilir
   mobx_codegen: ^2.0.4
   flutter_mobx: ^2.0.1
   #buildrunner
-  build_runner: ^2.1.5
+  build_runner: ^2.4.6
 
 dev_dependencies:
   flutter_test:
