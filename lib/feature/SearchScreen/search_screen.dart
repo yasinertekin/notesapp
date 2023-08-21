@@ -8,7 +8,7 @@ import 'package:notesapp/feature/EditScreen/edit_screen.dart';
 import 'package:notesapp/feature/Home/home_screen.dart';
 import 'package:notesapp/product/database/note_list_view_model.dart';
 
-import '../product/mixin/router/app_rouder_mixin.dart';
+import '../../product/mixin/router/app_rouder_mixin.dart';
 
 class SearchScreen extends StatelessWidget with MyNavigatorManager {
   SearchScreen({super.key});

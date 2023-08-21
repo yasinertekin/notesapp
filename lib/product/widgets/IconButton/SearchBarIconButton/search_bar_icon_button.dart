@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:notesapp/product/enum/my_color_enum.dart';
 import 'package:notesapp/product/extensions/my_color_extensions.dart';
-import 'package:notesapp/feature/search_screen.dart';
+
+import '../../../../feature/SearchScreen/search_screen.dart';
 
 class SearchBarIconButton extends StatelessWidget {
   const SearchBarIconButton({
